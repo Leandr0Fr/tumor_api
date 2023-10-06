@@ -16,6 +16,8 @@ def prediction():
     #Como son 4 clases, entonces es un arreglo de 4 elementos.
     #Entonces, predicted_class retorna la posición del arreglo donde la posición es la clase que predice.
     predicted_class = np.argmax(predict)
-    return clasificar_resultado(predicted_class)
+    return classify_result(predicted_class)
 
-
+def classify_result(index):
+    class_model = ["Glioma", "Meningioma", "Pituitary", "No_tumor"]
+    return class_model[index]
