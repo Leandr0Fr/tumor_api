@@ -9,7 +9,7 @@ CORS(app)
 @cross_origin
 @app.route('/')
 def index():
-    return "HOOOOLAAAA"
+    return render_template("index.html")
 
 @cross_origin
 @app.route("/ping", methods=["GET"])
