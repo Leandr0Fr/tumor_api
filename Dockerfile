@@ -14,5 +14,5 @@ COPY . .
 RUN pip install -r requirements.txt
 
 # Define el comando para ejecutar tu aplicación (puedes modificarlo según tu necesidad)
-CMD ["python", "app.py"]
+ENTRYPOINT ["python", "app.py"]
 
