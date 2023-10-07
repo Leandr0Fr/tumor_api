@@ -26,8 +26,17 @@ class TestAppEndpoints(unittest.TestCase):
         self.assertEqual(response.status_code, 418)
 
     def test_predict_no_image(self):
+        # Simula una solicitud POST sin envio de imagen
         response = self.app.post('/predict')
         self.assertEqual(response.status_code, 400)
 
+    def test_predict_void(self):
+        response = self.app.post('/predict', data={'image': ''})
+        self.assertEqual(response.status_code, 400)
+
+    def test_predict_none(self):
+        response = self.app.post('/predict', data={'image': None})
+        self.assertEqual(response.status_code, 400)
+        
 if __name__ == '__main__':
     unittest.main()
