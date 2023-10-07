@@ -14,7 +14,13 @@
     <p>Se debe realizar un consumo de la API mediante GET. En caso de estar activa retorna un 200.</p>
 
     <h1>Uso del Modelo</h1>
-    <p>Envía una imagen para el testeo del modelo y obtén un % de acierto.</p>
+    <p>Envía una imagen para el testeo del modelo y obtén unas de las 4 posibles clases:</p>
+    <ul>
+        <li>Glioma</li>
+        <li>Meningioma</li>
+        <li>Pituitary</li>
+        <li>No_tumor</li>
+      </ul>      
     <p>Se debe realizar un consumo de la API pasándole, mediante POST, un binario (imagen) con la key 
     <i>image</i>. Para realizar este consumo se debe agregar al dominio /predict.</p>
     <p>Las imágenes que acepta el modelo son png, jpg y jpeg.</p>
