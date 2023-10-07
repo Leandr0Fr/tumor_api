@@ -25,5 +25,9 @@ class TestAppEndpoints(unittest.TestCase):
             response = self.app.post('/predict', data={'image': (image_file, 'test.txt')})
         self.assertEqual(response.status_code, 418)
 
+    def test_predict_no_image(self):
+        response = self.app.post('/predict')
+        self.assertEqual(response.status_code, 400)
+
 if __name__ == '__main__':
     unittest.main()
