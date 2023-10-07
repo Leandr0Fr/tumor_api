@@ -52,5 +52,12 @@ class TestAppEndpoints(unittest.TestCase):
             data = response.get_json()
             self.assertEqual(data['message'], "Glioma")
 
+    def test_predict_meningioma(self):
+        # Simula una solicitud POST con una imagen y retorna Glioma
+        with open('image_test/meningioma.jpg', 'rb') as image_file:
+            response = self.app.post('/predict', data={'image': (image_file, 'test.jpg')})
+            data = response.get_json()
+            self.assertEqual(data['message'], "Meningioma")
+
 if __name__ == '__main__':
     unittest.main()
