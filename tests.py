@@ -13,11 +13,17 @@ class TestAppEndpoints(unittest.TestCase):
         response = self.app.get('/ping')
         self.assertEqual(response.status_code, 200)
     
-    def test_predict_valid_image_returns_200(self):
+    def test_predict_valid_image(self):
         # Simula una solicitud POST con una imagen válida
         with open('image_test/no_tumor.jpg', 'rb') as image_file:
             response = self.app.post('/predict', data={'image': (image_file, 'test.jpg')})
         self.assertEqual(response.status_code, 200)
+
+    def test_predict_invalid_file(self):
+        # Simula una solicitud POST con un archivo invalido
+        with open('image_test/invalid.txt', 'rb') as image_file:
+            response = self.app.post('/predict', data={'image': (image_file, 'test.txt')})
+        self.assertEqual(response.status_code, 418)
 
 if __name__ == '__main__':
     unittest.main()
