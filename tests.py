@@ -37,6 +37,12 @@ class TestAppEndpoints(unittest.TestCase):
     def test_predict_none(self):
         response = self.app.post('/predict', data={'image': None})
         self.assertEqual(response.status_code, 400)
-        
+
+    def test_predict_no_tumor(self):
+        # Simula una solicitud POST con una imagen y retorna no_tumor
+        with open('image_test/no_tumor.jpg', 'rb') as image_file:
+            response = self.app.post('/predict', data={'image': (image_file, 'test.jpg')})
+            data = response.get_json()  # Obtiene el JSON de la respuesta
+            self.assertEqual(data['message'], "No_tumor")  # Compara el valor del mensaje en el JSON 
 if __name__ == '__main__':
     unittest.main()
