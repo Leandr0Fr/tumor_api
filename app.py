@@ -25,7 +25,9 @@ def predict():
     image = request.files['image']
     if image.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
         image.save("image.png")
-        return jsonify(message = prediction()), 200
+        response = make_response(jsonify(message= prediction()))
+        response.status_code = 200
+        return response
     else:
         response = make_response(jsonify(message="I'm a teapot!"))
         response.status_code = 418
