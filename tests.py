@@ -65,5 +65,6 @@ class TestAppEndpoints(unittest.TestCase):
             response = self.app.post('/predict', data={'image': (image_file, 'test.jpg')})
             data = response.get_json()
             self.assertEqual(data['message'], "Pituitary")
+            
 if __name__ == '__main__':
     unittest.main()
