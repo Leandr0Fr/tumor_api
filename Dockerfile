@@ -8,4 +8,4 @@ COPY . .
 
 RUN pip install -r requirements.txt
 
-ENTRYPOINT ["gunicorn", "-w", "4", "app:app", "-b", "0.0.0.0:8000"]
+ENTRYPOINT ["gunicorn", "-w", "4", "app:app", "-b", "0.0.0.0:$PORT"]
