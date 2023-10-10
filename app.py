@@ -1,10 +1,11 @@
 from flask import Flask, request, jsonify, render_template, make_response
 import os
 from model import prediction
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources=
+    {r"/*": {"origins": "*"}}, supports_credentials=True)
 
 @app.route('/')
 def index():
@@ -17,6 +18,7 @@ def ping():
     return response
 
 @app.route('/predict', methods=['POST'])
+
 def predict():
     #Recibe y guarda la imagen
     image = request.files['image']
