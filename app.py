@@ -1,7 +1,7 @@
 from flask import Flask, request, jsonify, render_template, make_response
 import os
 from model import prediction
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 CORS(app, resources=
@@ -17,8 +17,8 @@ def ping():
     response.status_code = 200
     return response
 
-@app.route('/predict', methods=['POST'])
-
+@app.route('/predict', methods=['GET', 'POST'])
+@cross_origin(allow_headers=['Content-Type'])
 def predict():
     #Recibe y guarda la imagen
     image = request.files['image']
