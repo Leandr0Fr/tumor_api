@@ -1,25 +1,22 @@
 from flask import Flask, request, jsonify, render_template, make_response
 import os
 from model import prediction
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources = {r"/api/*":{"origins": "https://armidale-stonefish-frgk.1.sg-1.fl0.io"}})
 
-@cross_origin
 @app.route('/')
 def index():
     return render_template("index.html")
 
-@cross_origin
-@app.route("/ping", methods=["GET"])
+@app.route("/api/ping", methods=["GET"])
 def ping():
     response = make_response(jsonify(message='API on!'))
     response.status_code = 200
     return response
 
-@cross_origin
-@app.route('/predict', methods=['POST'])
+@app.route('/api/predict', methods=['POST'])
 def predict():
     #Recibe y guarda la imagen
     image = request.files['image']
